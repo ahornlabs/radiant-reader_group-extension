@@ -8,9 +8,9 @@ module GroupedPage
       alias_method_chain :permitted_groups, :inheritance
     }
   end
-  
+
   module InstanceMethods
-    
+
     attr_reader :inherited_groups
     def inherited_groups
       @inherited_groups ||= self.parent ? Group.attached_to(self.ancestors) : []
@@ -22,16 +22,26 @@ module GroupedPage
 
     def cache?
       self.permitted_groups.empty?
-    end        
+    end
 
     def has_inherited_group?(group)
       return self.inherited_groups.include?(group)
     end
-    
+
     def group_is_inherited?(group)
       return self.has_inherited_group?(group) && !self.has_group?(group)
     end
-    
+
+    # Checkbox disabled bei Anzeige der Gruppe auf der Seitenänderungsseite?
+    def group_checkbox_disabled?(group)
+      return self.inherited_groups.size > 0
+    end
+
+    # für Checkbox bei Anzeige der Gruppe auf der Seitenänderungsseite
+    def group_checked?(group)
+      return self.has_inherited_group?(group) || self.has_group?(group)
+    end
+
   end
 
 end

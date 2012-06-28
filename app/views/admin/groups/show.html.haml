@@ -26,13 +26,14 @@
             = link_to image('plus') + ' ' + t("create_#{func}"), new_admin_group_message_url(@group, :function => func), :class => 'action create'
       %h4
         =t('other_messages').titlecase
-      - @group.messages.ordinary.each do |message|
-        %p.ruled
-          = link_to message.subject, admin_message_url(message)
-          %span.sent
-            - if message.sent_at
-              = t('last_sent')
-              = l(message.sent_at, :format => :short)
+      - if @group.messages.size > 0  
+        - @group.messages.ordinary.each do |message|
+          %p.ruled
+            = link_to message.subject, admin_message_url(message)
+            %span.sent
+              - if message.sent_at
+                = t('last_sent')
+                = l(message.sent_at, :format => :short)
         
   - main.pages do
     #group_pages.box

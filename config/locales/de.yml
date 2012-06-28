@@ -3,7 +3,7 @@ de:
   subscriptions: "subscriptions"
   inherited_group: "group is attached higher in the page tree: can't be detached here"
   public_if_no_groups: "Leave all groups unchecked for public access"
-  allowed_groups: "Allow access only to:"
+  allowed_groups: "Zugriff nur für folgende Gruppen:"
   page_private: "Sorry: you don't have permission to view that page."
   none: "none"
   new_group: "Neue Gruppe"
